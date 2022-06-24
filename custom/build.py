@@ -11,3 +11,9 @@ class Command(setuptools.Command):
 
     def run(self):
         log.info("brrrrrrrrr")
+
+
+def install(dist):
+    # This could be protected by a opt-in condition...
+    build = dist.get_command_obj("build")
+    build.sub_commands = [*build.sub_commands, ("custom-build", None)]
